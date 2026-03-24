@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:PipBoy2000.Models"
+             xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              x:Class="PipBoy2000.Views.CharacterSheetPage"
              Title=""
              Padding="20">
@@ -18,7 +19,7 @@
         <Grid RowDefinitions="Auto,Auto,*" ColumnDefinitions="*">
 
             <Frame Grid.Row="0" BorderColor="{StaticResource FalloutBorder}" Padding="10" Margin="0,0,0,20">
-                <Grid Grid.Row="0" RowDefinitions="*,*,*" ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*,Auto" Margin="10,10,10,20" Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid Grid.Row="0" RowDefinitions="*,*,*" ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*,Auto,Auto" Margin="10,10,10,20" Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Label Grid.Row="0" Grid.Column="0" WidthRequest="100" Text="Name:" Padding="10" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End"/>
                     <Entry Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" WidthRequest="300" Text="{Binding CharacterName}"
                                HorizontalOptions="Start"
@@ -36,7 +37,19 @@
                     <Entry Grid.Row="2" Grid.Column="3" WidthRequest="100" Text="{Binding XpToNextLevel}" Margin="0,8,0,0" Keyboard="Numeric"  HorizontalOptions="Start"/>
 
                     <Label Grid.Row="0" Grid.Column="6" Text="Luck Points:" Padding="10" VerticalOptions="Center" HorizontalOptions="End" />
-                    <Entry Grid.Row="0" Grid.Column="7" Text="{Binding LuckPoints}" Keyboard="Numeric" WidthRequest="80" HorizontalOptions="End" />
+                    <Entry Grid.Row="0" Grid.Column="7" Grid.ColumnSpan="2" Text="{Binding LuckPoints}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" />
+                    
+                    <Label Grid.Row="1" Grid.Column="6" Text="Action Points:" Padding="10" VerticalOptions="Center" HorizontalOptions="End" />
+                    <Entry Grid.Row="1" Grid.Column="7" Text="{Binding ActionPoints}" Keyboard="Numeric" WidthRequest="80" HorizontalOptions="End">
+                        <Entry.Behaviors>
+                            <toolkit:NumericValidationBehavior 
+                                MaximumValue="6"
+                                MinimumValue="0"
+                                MaximumDecimalPlaces="0"
+                                Flags="ValidateOnValueChanged" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Label Grid.Row="1" Grid.Column="8" Text="/6" Padding="10" WidthRequest="35" VerticalOptions="Center" HorizontalOptions="End" />
                 </Grid>
             </Frame>
 

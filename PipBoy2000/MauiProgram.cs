@@ -1,5 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
-
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
+ 
 namespace PipBoy2000
 {
     public static class MauiProgram
@@ -12,7 +13,8 @@ namespace PipBoy2000
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("monofonto.otf", "monofonto");
-                });
+                })
+                .UseMauiCommunityToolkit();
 
 #if DEBUG
     		builder.Logging.AddDebug();

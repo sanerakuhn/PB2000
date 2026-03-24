@@ -19,6 +19,7 @@ public class CharacterSheet : INotifyPropertyChanged
     private double _ccw;
     private int _mcw;
     private int _caps;
+    private int _ap;
 
     public string CharacterName
     {
@@ -60,6 +61,12 @@ public class CharacterSheet : INotifyPropertyChanged
     {
         get => _luckPoints;
         set => SetField(ref _luckPoints, value);
+    }
+
+    public int ActionPoints
+    {
+        get => _ap;
+        set => SetField(ref _ap, value);
     }
 
     public double CCW
