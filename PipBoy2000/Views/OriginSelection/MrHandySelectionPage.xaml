@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PipBoy2000.Views.MrHandySelectionPage"
+             Title=""
+             Padding="20">
+
+    <Frame BackgroundColor="#0F141A"
+           BorderColor="{StaticResource FalloutBorder}"
+           CornerRadius="12"
+           Padding="30"
+           HasShadow="True"
+           Shadow="{StaticResource PipBoyGlowShadow}"
+           VerticalOptions="FillAndExpand"
+           HorizontalOptions="FillAndExpand">
+
+        <Grid RowDefinitions="*" ColumnDefinitions="*">
+
+            <VerticalStackLayout Spacing="40"
+                                 VerticalOptions="FillAndExpand"
+                                 HorizontalOptions="FillAndExpand">
+
+                <Label Text="SELECT YOUR SUB-ORIGIN"
+                       FontSize="48"
+                       Style="{StaticResource PipBoyHeader}"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,40" />
+
+                <HorizontalStackLayout Spacing="25"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Center">
+
+                    <VerticalStackLayout Spacing="25"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Center">
+
+                        <Button Text="Mister Handy"
+                            Style="{StaticResource PipBoyButton}"
+                            FontSize="18"
+                            HeightRequest="60"
+                            WidthRequest="200"
+                            Clicked="OnOriginClicked"
+                            CommandParameter="Mister Handy">
+                            <Button.GestureRecognizers>
+                                <PointerGestureRecognizer PointerEntered="OnButtonHoverEntered"
+                                                      PointerExited="OnButtonHoverExited" />
+                            </Button.GestureRecognizers>
+                        </Button>
+
+                        <Button Text="Miss Nanny"
+                        Style="{StaticResource PipBoyButton}"
+                        FontSize="18"
+                        HeightRequest="60"
+                        WidthRequest="200"
+                        Clicked="OnOriginClicked"
+                        CommandParameter="Miss Nanny">
+                            <Button.GestureRecognizers>
+                                <PointerGestureRecognizer PointerEntered="OnButtonHoverEntered"
+                                                          PointerExited="OnButtonHoverExited" />
+                            </Button.GestureRecognizers>
+                        </Button>
+
+                        <Button Text="Mister Farmhand"
+                            Style="{StaticResource PipBoyButton}"
+                            FontSize="18"
+                        HeightRequest="60"
+                        WidthRequest="200"
+                            Clicked="OnOriginClicked"
+                            CommandParameter="Mister Farmhand">
+                            <Button.GestureRecognizers>
+                                <PointerGestureRecognizer PointerEntered="OnButtonHoverEntered"
+                                                          PointerExited="OnButtonHoverExited" />
+                            </Button.GestureRecognizers>
+                        </Button>
+
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="25"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Center">
+                        <Button Text="Nurse Handy"
+                            Style="{StaticResource PipBoyButton}"
+                            FontSize="18"
+                            HeightRequest="60"
+                            WidthRequest="200"
+                            Clicked="OnOriginClicked"
+                            CommandParameter="Nurse Handy">
+                            <Button.GestureRecognizers>
+                                <PointerGestureRecognizer PointerEntered="OnButtonHoverEntered"
+                                                          PointerExited="OnButtonHoverExited" />
+                            </Button.GestureRecognizers>
+                        </Button>
+
+                        <Button Text="Mister Gutsy"
+                            Style="{StaticResource PipBoyButton}"
+                            FontSize="18"
+                            HeightRequest="60"
+                            WidthRequest="200"
+                            Clicked="OnOriginClicked"
+                            CommandParameter="Mister Gutsy">
+                            <Button.GestureRecognizers>
+                                <PointerGestureRecognizer PointerEntered="OnButtonHoverEntered"
+                                                          PointerExited="OnButtonHoverExited" />
+                            </Button.GestureRecognizers>
+                        </Button>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+
+            <BoxView Style="{StaticResource ScanlineOverlay}"
+                     InputTransparent="True" />
+
+        </Grid>
+    </Frame>
+</ContentPage>

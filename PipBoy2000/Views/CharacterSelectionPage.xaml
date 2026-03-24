@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PipBoy2000.Views.CharacterSelectionPage"
+             Title=""
+             Padding="20">
+
+    <Frame BackgroundColor="#0F141A"
+           BorderColor="{StaticResource FalloutBorder}"
+           CornerRadius="12"
+           Padding="30"
+           HasShadow="True"
+           Shadow="{StaticResource PipBoyGlowShadow}"
+           VerticalOptions="FillAndExpand"
+           HorizontalOptions="FillAndExpand">
+
+        <!-- Single child of Frame: the Grid -->
+        <Grid RowDefinitions="*" ColumnDefinitions="*">
+
+            <!-- Bottom layer: All content -->
+            <VerticalStackLayout Spacing="40"
+                                 VerticalOptions="FillAndExpand"
+                                 HorizontalOptions="FillAndExpand">
+
+                <!-- Header -->
+                <Label Text="SAVED CHARACTERS"
+                       FontSize="48"
+                       Style="{StaticResource PipBoyHeader}"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,40" />
+
+                <!-- CollectionView fills remaining space -->
+                <CollectionView x:Name="CharactersList"
+                ItemsSource="{Binding CharacterFiles}"
+                SelectionMode="None"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Margin="0,0,0,20"
+                EmptyView="No saved characters yet. Create one!">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame x:Name="ItemFrame"
+               BackgroundColor="#1A1F26"
+               BorderColor="#475867"
+               CornerRadius="6"
+               Padding="15"
+               Margin="0,4">
+
+                                <Label FontSize="Medium"
+                   TextColor="{StaticResource FalloutTextGlow}"
+                   HorizontalOptions="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding DisplayName}" />
+                                            <Span Text=", level " />
+                                            <Span Text="{Binding DisplayLevel}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding DisplayOrigin}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <!-- Hover and tap recognizers on the Frame -->
+                                <Frame.GestureRecognizers>
+                                    <PointerGestureRecognizer PointerEntered="OnItemHoverEntered"
+                                          PointerExited="OnItemHoverExited" />
+                                    <TapGestureRecognizer Tapped="OnItemTapped" />
+                                </Frame.GestureRecognizers>
+
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Bottom button row -->
+                <HorizontalStackLayout Spacing="20"
+                                       VerticalOptions="End"
+                                       HorizontalOptions="Center"
+                                       Margin="0,20,0,0">
+
+                    <Button x:Name="LoadButton"
+                            Style="{StaticResource PipBoyButton}"
+                            FontSize="24"
+                            HeightRequest="80"
+                            WidthRequest="300"
+                            Text="Load Selected"
+                            IsEnabled="False"
+                            Clicked="OnLoadSelectedClicked">
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="OnButtonHoverEntered"
+                                                      PointerExited="OnButtonHoverExited" />
+                        </Button.GestureRecognizers>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="{StaticResource FalloutPrimaryGreenDark}" />
+                                        <Setter Property="Opacity" Value="1.0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#333333" />
+                                        <!-- Dark grey -->
+                                        <Setter Property="TextColor" Value="#666666" />
+                                        <!-- Grey text -->
+                                        <Setter Property="Opacity" Value="0.6" />
+                                        <!-- Faded -->
+                                        <Setter Property="BorderColor" Value="#555555" />
+                                        <!-- Muted border -->
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Button>
+
+                    <Button x:Name="DeleteButton"
+                            Style="{StaticResource PipBoyButton}"
+                            FontSize="24"
+                            HeightRequest="80"
+                            WidthRequest="300"
+                            Text="Delete Selected"
+                            IsEnabled="False"
+                            Clicked="OnDeleteClicked">
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="OnButtonHoverEntered"
+                                                      PointerExited="OnButtonHoverExited" />
+                        </Button.GestureRecognizers>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="{StaticResource FalloutPrimaryGreenDark}" />
+                                        <Setter Property="Opacity" Value="1.0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#333333" />
+                                        <!-- Dark grey -->
+                                        <Setter Property="TextColor" Value="#666666" />
+                                        <!-- Grey text -->
+                                        <Setter Property="Opacity" Value="0.6" />
+                                        <!-- Faded -->
+                                        <Setter Property="BorderColor" Value="#555555" />
+                                        <!-- Muted border -->
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Button>
+
+                    <Button x:Name="ConfirmDeleteButton"
+                            Style="{StaticResource PipBoyButton}"
+                            FontSize="24"
+                            HeightRequest="80"
+                            WidthRequest="300"
+                            Text="Confirm Delete"
+                            IsVisible="False"
+                            BackgroundColor="{StaticResource FalloutDanger}"
+                            Clicked="OnConfirmDeleteClicked">
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="OnButtonHoverEntered"
+                                                      PointerExited="OnButtonHoverExited" />
+                        </Button.GestureRecognizers>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="{StaticResource FalloutPrimaryGreenDark}" />
+                                        <Setter Property="Opacity" Value="1.0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#333333" />
+                                        <!-- Dark grey -->
+                                        <Setter Property="TextColor" Value="#666666" />
+                                        <!-- Grey text -->
+                                        <Setter Property="Opacity" Value="0.6" />
+                                        <!-- Faded -->
+                                        <Setter Property="BorderColor" Value="#555555" />
+                                        <!-- Muted border -->
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Button>
+
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+
+            <!-- Top layer: Scanline overlay (on top of everything) -->
+            <BoxView Style="{StaticResource ScanlineOverlay}"
+                     InputTransparent="True" />
+
+        </Grid>
+    </Frame>
+</ContentPage>

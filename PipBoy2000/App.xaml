@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Application
+    x:Class="PipBoy2000.App"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:PipBoy2000.Behaviors">
+
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <!-- Fallout / Pip-Boy 2000 Theme Colors -->
+            <Color x:Key="FalloutPrimaryGreen">#00FF9F</Color>
+            <!-- Bright Pip-Boy glow -->
+            <Color x:Key="FalloutPrimaryGreenDark">#003D1A</Color>
+            <!-- Muted dark green base -->
+            <Color x:Key="FalloutAccentAmber">#FFB641</Color>
+            <!-- Amber highlights/warnings -->
+            <Color x:Key="FalloutBackground">#0A0F14</Color>
+            <!-- Deep terminal black-green -->
+            <Color x:Key="FalloutText">#E0E0E0</Color>
+            <!-- Off-white text -->
+            <Color x:Key="FalloutTextGlow">#C0FFFF</Color>
+            <!-- Cyan-tinted glow text -->
+            <Color x:Key="FalloutDanger">#FF4040</Color>
+            <!-- Red alerts -->
+            <Color x:Key="FalloutVaultBlue">#7EA3CF</Color>
+            <!-- Vault-Tec blue accents -->
+            <Color x:Key="FalloutBorder">#1BFF80</Color>
+            <!-- Green border glow -->
+            <Color x:Key="FalloutRust">#A8896E</Color>
+            <!-- Rusty brown details -->
+
+            <Shadow x:Key="PipBoyGlowShadow"
+                    Brush="{StaticResource FalloutPrimaryGreen}"
+                    Radius="30"
+                    Opacity="0.35"
+                    Offset="0,0" />
+
+
+            <LinearGradientBrush x:Key="ScanlineBrush" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#00000000" Offset="0.0" />
+                <GradientStop Color="#00000000" Offset="0.48" />
+                <GradientStop Color="#4D000000" Offset="0.5" />
+                <GradientStop Color="#00000000" Offset="0.52" />
+                <GradientStop Color="#00000000" Offset="1.0" />
+            </LinearGradientBrush>
+
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource FalloutBackground}" />
+            </Style>
+
+            <Style TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#0F141A" />
+                <Setter Property="BorderColor" Value="{StaticResource FalloutBorder}" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="Padding" Value="30" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="Shadow" Value="{StaticResource PipBoyGlowShadow}" />
+            </Style>
+
+            <Style x:Key="ScanlineOverlay" TargetType="BoxView">
+                <Setter Property="Background" Value="{StaticResource ScanlineBrush}" />
+                <Setter Property="Opacity" Value="0.25" />
+                <Setter Property="InputTransparent" Value="True" />
+                <Setter Property="behaviors:ScanlineBehaviorExtensions.AutoScanlineScroll" Value="True" />
+
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource FalloutTextGlow}" />
+                <Setter Property="FontFamily" Value="monofonto" />
+            </Style>
+
+            <Style x:Key="PipBoyHeader" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource FalloutPrimaryGreen}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="monofonto" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,0,0,50" />
+            </Style>
+
+            <Style x:Key="PipBoyButton" TargetType="Button">
+                <Setter Property="FontFamily" Value="monofonto" />
+                <Setter Property="BackgroundColor" Value="{StaticResource FalloutPrimaryGreenDark}" />
+                <Setter Property="TextColor" Value="{StaticResource FalloutTextGlow}" />
+                <Setter Property="BorderColor" Value="{StaticResource FalloutBorder}" />
+                <Setter Property="BorderWidth" Value="4" />
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource FalloutTextGlow}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource FalloutBorder}" />
+                <Setter Property="BackgroundColor" Value="#1A1F26" />
+            </Style>
+
+            <Style TargetType="CollectionView">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+
+            <Style x:Key="DangerButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource FalloutDanger}" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+            <Style x:Key="AmberButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource FalloutAccentAmber}" />
+                <Setter Property="TextColor" Value="{StaticResource FalloutBackground}" />
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
